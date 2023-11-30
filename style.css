@@ -7,9 +7,9 @@
   /* font-family: 'Roboto', sans-serif; */
   box-sizing: border-box;
 }
-body{
-  /* padding: 0 30px; */
-}
+/* body{
+  padding: 0 30px
+} */
 header{
   width: 100%;
   color: black;
@@ -27,6 +27,7 @@ header{
 }
 a{
   text-decoration: none;
+  position: relative;
 }
 li{
   list-style: none;
@@ -53,9 +54,48 @@ blockquote{
   height: 75px;
 }
 .search{
-  margin: 10px 0 15px;
+  margin: 10px 0;
+}
+.log{
+  font-style: italic;
+  color: blue;
+  margin: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.log:hover{
+  color: orangered;
+  /* border-bottom: 1px solid orangered; */
+}
+a::after {
+    content: '';
+    display: block;
+    height:1.5px;
+    width: 0;
+    background-color: #ff6600;
+    position: absolute;
+    bottom: 1;
+    left: 0;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    transform: translateX(0.1%);
+}
+
+a:hover::after {
+    width: 100%;
+    left: 0;
+}
+.right-head{
+  margin-left: 100px;
 }
 nav{
-  padding: 10px 40px;
-  border-bottom: 1px solid goldenrod;
+  padding: 5px 100px 10px;
+  border-bottom: 3px double rgb(46, 41, 28);
+  color: rgb(43, 41, 41);
+}
+.search-box{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(43, 41, 41);
+  padding: 2px;
 }
