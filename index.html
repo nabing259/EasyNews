@@ -11,7 +11,7 @@
     <header>
         <div class="flex pre-nav">
             <div id="logo">
-                <a href="#">
+                <a href="index.html">
                     <h1 class="easynews">Easy<em>News</em></h1>
                 </a>
                 <p class="current-date"></p>
@@ -35,29 +35,25 @@
                     <a class="log">Register</a>
                 </div>
                 <form action="#" class="search">
-                    <input type="text" placeholder="I am Looking for..." class="search-box">
-                    <i class="fa-solid fa-magnifying-glass" style="color: #090909;"></i>
-                    <button><i class="fa-solid fa-magnifying-glass" style="color: #090909;"></i></button>
+                    <input type="text" placeholder="I am Looking for..." id="search-box">
+                    <button><i class="fa-solid fa-magnifying-glass" style="color: #090909;" id="button"></i></button>
                 </form>
             </div>
         </div>
         <nav>
             <ul class="flex">
-                <li><a href="">Top News</a></li>
-                <li><a href="">India</a></li>
-                <li><a href="">World</a></li>
-                <li><a href="">Technology</a></li>
-                <li><a href="">Business</a></li>
-                <li><a href="">Cricket</a></li>
-                <li><a href="">Sports</a></li>
-                <li><a href="">Lifestyle</a></li>
+                <li id="india" onclick="clickNavItem('india')">Home</li>
+                <li id="politics" onclick="clickNavItem('politics')">Politics</li>
+                <li id="world" onclick="clickNavItem('world')">World</li>
+                <li id="technology" onclick="clickNavItem('technology')">Technology</li>
+                <li id="business" onclick="clickNavItem('business')">Business</li>
+                <li id="cricket" onclick="clickNavItem('cricket')">Cricket</li>
+                <li id="sports" onclick="clickNavItem('sports')">Sports</li>
+                <li id="lifestyle" onclick="clickNavItem('lifestyle')">Lifestyle</li>
             </ul>
         </nav>
     </header>
     <main>
-        <div>
-            <h1 class="top-news">Top News</h1>
-        </div>
         <section class="grid" id="news_data">
            
         </section>

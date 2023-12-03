@@ -29,9 +29,6 @@ a{
   text-decoration: none;
   position: relative;
 }
-li{
-  list-style: none;
-}
 .easynews{
   font-size: 37px;
   color: black;
@@ -71,17 +68,17 @@ blockquote{
 .log::after {
     content: '';
     display: block;
-    height:1.5px;
+    height:2px;
     width: 0;
     background-color:rgb(54, 157, 231);
     position: absolute;
     bottom: 1;
     left: 0;
-    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
     transform: translateX(0.1%);
 }
 
-a:hover::after {
+li:hover::after,a:hover::after {
     width: 100%;
     left: 0;
 }
@@ -91,27 +88,31 @@ a:hover::after {
 nav{
   padding: 5px 100px 10px;
   border-bottom: 3px double rgb(46, 41, 28);
+  position: relative;
 }
-nav a{
+li{
+  list-style: none;
   color: rgb(6, 6, 6);
   font-weight: 500;
+  cursor: pointer;
+  position: relative;
 }
-nav a:hover{
+li:hover{
   color: rgb(233, 58, 0);
 }
-nav a::after {
+li::after {
   content: '';
   display: block;
-  height:1.5px;
+  height:2px;
   width: 0;
   background-color:rgb(231, 98, 54);
   position: absolute;
   bottom: 1;
   left: 0;
-  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
   transform: translateX(0.1%);
 }
-.search-box{
+#search-box{
   border: none;
   outline: none;
   background-color: transparent;
@@ -143,6 +144,7 @@ nav a::after {
 }
 .description{
   font-size: 12px;
+  margin-top: 5px;
 }
 .card-image img {
   width: 100%;
@@ -176,5 +178,16 @@ nav a::after {
 }
 .title a:hover{
   text-decoration: underline;
+  cursor: pointer;
+}
+.active{
+  color: rgb(233, 58, 0);
+  border-bottom: 2.5px solid rgb(233, 58, 0);;
+}
+button{
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
 }

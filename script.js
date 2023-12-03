@@ -3,13 +3,14 @@
 //Stock apiKey = YMWGV7O8YSOP5RIK
 // Stock apiUrl = https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=RELIANCE.BSE&outputsize=full&apikey=YMWGV7O8YSOP5RIK
 const newsData = document.querySelector("section")
-newsData.innerHTML='';
+
 const currentDate = new Date();
 function formatCurrentDate(inputDate) {
     const date = new Date(inputDate);
     const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
 }
+window.addEventListener("load", () => getNewsData('india'));
 function getQuoteOfTheDay() {
     const apiUrl = `https://api.quotable.io/quotes/random?maxLength=90`;
 
@@ -31,20 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
     getQuoteOfTheDay();
     const formattedDateElement = document.querySelector('.current-date');
     formattedDateElement.textContent = formatCurrentDate(currentDate);
-    
 });
- getNewsData= () =>{
-    const newsApi = `https://newsapi.org/v2/top-headlines?country=in&from=2023-12-02&apiKey=48a5e8c4657a469d825dc17daa0cb244`;
+ const getNewsData= (id) =>{
+    const newsApi = `https://newsapi.org/v2/everything?q=${id}&from=2023-12-03&apiKey=48a5e8c4657a469d825dc17daa0cb244`;
 
     fetch(newsApi)
     .then(data => data.json())
     .then(data => {
         appendNewsData(data);
-        console.log(data.articles);
+        // console.log(data.articles);
     })
 }
-getNewsData();
+
 const appendNewsData = (news) =>{
+    newsData.innerHTML='';
     news.articles.forEach(element => {
         console.log(element);
         if(!element.urlToImage) return;
@@ -68,3 +69,44 @@ const appendNewsData = (news) =>{
         newsData.append(card);
     });
 }
+// const getNavNewsData = (id) => {
+//     const newsApi = `https://newsapi.org/v2/everything?q=${id}&apiKey=48a5e8c4657a469d825dc17daa0cb244`;
+
+//     fetch(newsApi)
+//         .then(data => {
+//             if (!data.ok) {
+//                 throw new Error(`Network response was not ok (${data.status})`);
+//             }
+//             return data.json();
+//         })
+//         .then(data => {
+//             appendNewsData(data);
+//             // console.log(data.articles);
+//         })
+//         .catch(error => {
+//             console.error('Error fetching news data:', error);
+//         });
+// }
+
+let navSelected = null;
+function clickNavItem(id) {
+    console.log(id);
+    getNewsData(id);
+    const navItem = document.getElementById(id);
+
+    if (navSelected) {
+        navSelected.classList.remove("active");
+    }
+
+    navSelected = navItem;
+    navSelected.classList.add("active");
+}
+
+const searchButton = document.getElementById("button");
+const searchText = document.getElementById("search-box");
+
+searchButton.addEventListener("click", () => {
+    const keyWord = searchText.value;
+    if(!keyWord) return;
+    getNewsData(keyWord);
+})
