@@ -1,7 +1,3 @@
-// news apiKey - 48a5e8c4657a469d825dc17daa0cb244
-// https://newsapi.org/v2/everything?q=Apple&from=2023-10-29&sortBy=popularity&apiKey=48a5e8c4657a469d825dc17daa0cb244
-//Stock apiKey = YMWGV7O8YSOP5RIK
-// Stock apiUrl = https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=RELIANCE.BSE&outputsize=full&apikey=YMWGV7O8YSOP5RIK
 const newsData = document.querySelector("section")
 
 const currentDate = new Date();
@@ -32,15 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
     getQuoteOfTheDay();
     const formattedDateElement = document.querySelector('.current-date');
     formattedDateElement.textContent = formatCurrentDate(currentDate);
+    
 });
  const getNewsData= (id) =>{
-    const newsApi = `https://newsapi.org/v2/everything?q=${id}&from=2023-12-03&apiKey=48a5e8c4657a469d825dc17daa0cb244`;
+    const date = new Date()
+    date.setDate(date.getDate() - 1);
+    const newDate = date.toISOString().split('T')[0];
+
+    const newsApi = `https://newsapi.org/v2/everything?q=${id}&from=${newDate}&sortBy=popularity&apiKey=48a5e8c4657a469d825dc17daa0cb244`;
 
     fetch(newsApi)
     .then(data => data.json())
     .then(data => {
         appendNewsData(data);
-        // console.log(data.articles);
+        console.log(data.articles);
     })
 }
 
@@ -58,7 +59,7 @@ const appendNewsData = (news) =>{
                 </div>
                 <div class="card-content">
                     <h3 class="title"><a href="${element.url}" class="read-more">${element.title}</a></h3>
-                    <p class="description">${element.description}</p>
+                    <p class="description" id="descriptionId">${element.description}</p>
                     
                     <div class="source-data">
                         <p>${formatCurrentDate(element.publishedAt)}</p>
@@ -110,3 +111,5 @@ searchButton.addEventListener("click", () => {
     if(!keyWord) return;
     getNewsData(keyWord);
 })
+
+
